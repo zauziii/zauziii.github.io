@@ -1,47 +1,124 @@
 # Zhi Zhou — Academic website
 
-A personal academic and recruitment website for GitHub Pages. The design follows the supplied reference: a white background, navy serif headings, pale blue accents, outline buttons, and a round photograph frame.
+A Markdown-based academic and recruitment website, published with **GitHub Pages and Jekyll**.
 
-Plain HTML, CSS, and JavaScript; no build or dependencies are needed.
+**Website:** https://zauziii.github.io/  
+**Repository:** https://github.com/zauziii/zauziii.github.io
 
-## 添加自己的头像和 CV
+The layout is separate from the content. You can update your profile directly on GitHub without editing HTML, CSS, or JavaScript.
 
-1. 将照片放入 `assets/`，例如 `assets/portrait.jpg`。
-2. 将自己的 PDF 简历放入 `assets/`，例如 `assets/cv.pdf`。
-3. 编辑 `site-config.js`，将对应的空字符串改成文件路径：
+## Edit your website on GitHub
 
-```js
-window.profileAssets = {
-  portrait: './assets/portrait.jpg',
-  portraitPosition: '50% 35%',
-  cv: './assets/cv.pdf'
-};
+1. Open a Markdown file from the table below.
+2. Select the pencil icon to edit it.
+3. Update the text and select **Commit changes**.
+4. GitHub Pages rebuilds and publishes the site automatically. You can check progress in the repository's **Actions** tab.
+
+Keep the `---` lines at the top of each Markdown file. The fields between them control titles, dates, links, and display order. Write normal Markdown below the second `---` line. Use quotes around field values that contain a colon.
+
+## Where to make changes
+
+| Content | File or folder |
+| --- | --- |
+| Homepage introduction, headline, section labels, and tools | [`index.md`](index.md) |
+| Biography, location, qualifications, and languages | [`content/_sections/about.md`](content/_sections/about.md) |
+| Research areas and methods | [`content/_research/`](content/_research/) |
+| Publications | [`content/_publications/`](content/_publications/) |
+| Employment history | [`content/_experience/`](content/_experience/) |
+| Education | [`content/_education/`](content/_education/) |
+| Contact paragraph and CV messages | [`content/_sections/contact.md`](content/_sections/contact.md) |
+| Name, email, site description, photograph, and CV filenames | [`_config.yml`](_config.yml) |
+| Photograph and your own CV | [`assets/`](assets/) |
+
+## Add a publication
+
+Create a new file under `content/_publications/`, for example `2026-new-paper.md`. Copy an existing entry or use this structure:
+
+```markdown
+---
+order: 1
+year: 2026
+title: "Your publication title"
+journal: "Journal name"
+topic: "Research topic"
+authors: "Author A, **Zhou Z**, Author B."
+link: "https://doi.org/your-doi"
+---
+
+2026; volume(issue):pages. Add a short publication note if needed.
 ```
 
-照片和 CV 可以分别添加。照片支持 JPG、PNG、WebP；图片保持原文件，通过网页样式显示为圆形。`portraitPosition` 可以调整取景位置。
+Entries appear in ascending `order`. Use a lower value to place an entry earlier, and keep the values unique. The filename is for organization; it does not determine the displayed title or order.
 
-**未配置照片时**显示姓名首字母 ZZ。**未配置 CV 时**，CV 按钮跳转到邮件索取区域，不会打开缺失文件。本网站不包含生成的 CV。
+Research, experience, and education use the same approach: one Markdown file per entry. Copy an existing file in the relevant folder, change its fields and text, and commit it.
 
-在 GitHub 仓库中打开 `assets/`，使用 **Add file → Upload files** 上传。然后打开 `site-config.js`，点击编辑按钮修改路径并提交即可。
+## Add your photograph and CV
 
-## GitHub Pages
+Upload your files to `assets/` using **Add file → Upload files**:
 
-Repository: [zauziii/zauziii.github.io](https://github.com/zauziii/zauziii.github.io)
+- **Photograph:** `assets/portrait.jpg`
+- **CV:** `assets/cv.pdf`
 
-In **Settings → Pages**, select **Deploy from a branch**, then **main** and **/(root)**. Save. Once deployment succeeds, the site is served at `https://zauziii.github.io/`. Later commits publish automatically.
+These exact filenames work automatically after the next build. The files are optional and can be added independently. Without a photograph, the site displays **ZZ**. Without a CV, visitors can request it by email. No generated CV is included.
 
-Keep `index.html` at the repository root. All asset paths are relative, so the same files also work under a project-site subdirectory. `.nojekyll` enables plain static hosting.
+To use another filename or a PNG/WebP photograph, update the corresponding path in `_config.yml`. Keep the leading `/`:
 
-## Editing
+```yaml
+portrait: "/assets/portrait.png"
+portrait_position: "50% 35%"
+cv: "/assets/cv.pdf"
+```
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Biography, research, publications, experience, and contact details |
-| `styles.css` | Desktop, mobile, reduced-motion, and print layouts |
-| `site-config.js` | Paths to your photograph and CV |
-| `script.js` | Mobile menu, optional assets, and footer year |
-| `assets/` | Your own photograph and PDF CV |
+The photograph is displayed in a circle without changing the original file. Adjust `portrait_position` to move the crop.
 
-Open `index.html` directly for an offline preview. With Node installed, `npm run dev` also serves a local preview at `http://localhost:3000`. GitHub Pages serves the static files and does not use the development server.
+## Markdown basics
 
-The site uses system fonts and contains no analytics or advertisements. Publication links lead to the original publisher pages. Keep your public biography and your own CV consistent when updating them.
+```markdown
+A normal paragraph, with **bold text** and *italic text*.
+
+- A list item
+- Another list item
+
+[A link label](https://example.com)
+```
+
+Use a blank line between paragraphs. Page and card titles come from the fields at the top of each file, so you do not need to repeat them as Markdown headings.
+
+## Typography and layout
+
+The site retains the light reference style: white space, navy serif headings, pale blue accents, rounded outline buttons, and a circular portrait frame.
+
+- Main body text: **17 px** on desktop and **16 px** on mobile at the browser's default font setting.
+- Introduction: **17–18 px**.
+- Publication titles: **22–24 px**.
+- Supporting text: generally **14–16 px**.
+- Headings scale to fit the screen. Font sizes use `rem` units and respect browser font preferences.
+
+Optional design changes belong in `styles.css`. The page structure is in `_layouts/home.html`. Routine content updates only require Markdown.
+
+## GitHub Pages settings
+
+The repository uses **Settings → Pages → Deploy from a branch → main → /(root)**.
+
+Jekyll converts the Markdown to HTML during deployment. Keep `_config.yml`, `_layouts/`, and `index.md` in the repository root. Do not add a `.nojekyll` file or a second root `index.html`, because these would bypass or conflict with the Markdown homepage.
+
+The site uses relative asset URLs through Jekyll, so it can also run as a project site by changing `url` and `baseurl` in `_config.yml`.
+
+## Optional local preview
+
+You do not need a local development environment to edit on GitHub. To preview locally with Ruby and Bundler installed:
+
+```sh
+bundle install
+bundle exec jekyll serve
+```
+
+Open `http://localhost:4000`. To create a static build, run `bundle exec jekyll build`; the generated files go into `_site/`. Do not commit that generated folder.
+
+The optional Node preview server (`npm run dev`) serves an existing `_site/` build. It is used for supervised previews and does not build Markdown itself.
+
+## References
+
+- [GitHub Pages and Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll)
+- [Adding content with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-content-to-your-github-pages-site-using-jekyll)
+- [Jekyll collections](https://jekyllrb.com/docs/collections/)

@@ -1,0 +1,48 @@
+# Public profile settings. All page text is written in Markdown.
+title: "Zhi Zhou — Biostatistician & Statistical Researcher"
+name: "Zhi Zhou"
+initials: "ZZ"
+description: "Biostatistics, population health research, and reproducible analysis."
+email: "zhi.zhou@hotmail.com"
+location: "Finland"
+url: "https://zauziii.github.io"
+baseurl: ""
+lang: en
+
+# Upload files with these names to activate the photograph and CV automatically.
+# If a file is missing, the site keeps the initials or CV-on-request fallback.
+portrait: "/assets/portrait.jpg"
+portrait_position: "50% 35%"
+cv: "/assets/cv.pdf"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+collections_dir: content
+collections:
+  sections:
+    output: false
+  research:
+    output: false
+  publications:
+    output: false
+  experience:
+    output: false
+  education:
+    output: false
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - node_modules
+  - scripts
+  - docs
+  - vendor
+  - assets/README.md
+  - qa-preview.html

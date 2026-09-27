@@ -1,7 +1,10 @@
 {
   "name": "zhi-zhou-academic-profile",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "A static academic website for GitHub Pages. No build required.",
-  "scripts": { "dev": "node scripts/preview-server.mjs" }
+  "description": "Markdown and Jekyll academic website for GitHub Pages.",
+  "scripts": {
+    "build": "bundle exec jekyll build",
+    "dev": "node scripts/preview-server.mjs"
+  }
 }

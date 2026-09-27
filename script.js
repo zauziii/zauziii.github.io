@@ -1,40 +1,10 @@
 'use strict';
 
-// The content and contact links work without JavaScript.
-// Configure your own photograph and PDF in site-config.js.
-const profileAssets = window.profileAssets || {};
-
-if (profileAssets.portrait) {
-  const portrait = new Image();
-  portrait.alt = 'Zhi Zhou';
-  portrait.width = 480;
-  portrait.height = 480;
-  portrait.decoding = 'async';
-  portrait.style.objectPosition = profileAssets.portraitPosition || '50% 35%';
-  portrait.addEventListener('load', () => {
-    document.querySelector('.portrait-frame').replaceChildren(portrait);
-  }, { once: true });
-  // The initials remain visible if the supplied photograph cannot load.
-  portrait.src = profileAssets.portrait;
-}
-
-if (profileAssets.cv) {
-  document.querySelectorAll('[data-cv-link]').forEach((link) => {
-    link.href = profileAssets.cv;
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.setAttribute('aria-label', `${link.textContent.trim()} (PDF, opens in a new tab)`);
-  });
-  const download = document.querySelector('#cv-download');
-  download.href = profileAssets.cv;
-  download.download = 'Zhi_Zhou_CV.pdf';
-  download.textContent = 'Download CV ↓';
-  document.querySelector('#cv-status').textContent = 'Experience, education, and selected publications.';
-}
-
+// Content, photograph, and CV links are rendered by Jekyll.
+// JavaScript only enhances the mobile menu and footer year.
 const menuButton = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('#mobile-menu');
-const smallScreen = window.matchMedia('(max-width: 760px)');
+const smallScreen = window.matchMedia('(max-width: 48rem)');
 
 function closeMenu(returnFocus = false) {
   mobileMenu.hidden = true;
