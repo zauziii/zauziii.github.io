@@ -21,11 +21,12 @@ Keep the `---` lines at the top of each Markdown file. The fields between them c
 | Content | File or folder |
 | --- | --- |
 | Homepage introduction, headline, section labels, and tools | [`index.md`](index.md) |
-| Biography, location, qualifications, and languages | [`content/_sections/about.md`](content/_sections/about.md) |
+| Biography, current study status, and location | [`content/_sections/about.md`](content/_sections/about.md) |
 | Research areas and methods | [`content/_research/`](content/_research/) |
 | Publications | [`content/_publications/`](content/_publications/) |
 | Employment history | [`content/_experience/`](content/_experience/) |
-| Education | [`content/_education/`](content/_education/) |
+| Current degree and study track | [`content/_education/00-helsinki.md`](content/_education/00-helsinki.md) |
+| Previous education | [`content/_education/`](content/_education/) |
 | Contact paragraph and CV messages | [`content/_sections/contact.md`](content/_sections/contact.md) |
 | Name, email, site description, photograph, and CV filenames | [`_config.yml`](_config.yml) |
 | Photograph and your own CV | [`assets/`](assets/) |
@@ -51,6 +52,8 @@ link: "https://doi.org/your-doi"
 Entries appear in ascending `order`. Use a lower value to place an entry earlier, and keep the values unique. The filename is for organization; it does not determine the displayed title or order.
 
 Research, experience, and education use the same approach: one Markdown file per entry. Copy an existing file in the relevant folder, change its fields and text, and commit it.
+
+The current Helsinki degree has `current: true` and `status: "In progress"`. This highlights it in the education section before the research background and publications. Update those fields when your study status changes. Enrollment and graduation dates are omitted until you choose to add them.
 
 ## Add your photograph and CV
 

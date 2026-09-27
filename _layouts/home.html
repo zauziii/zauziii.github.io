@@ -32,8 +32,9 @@
     <a class="wordmark" href="#top" aria-label="{{ site.name | escape }}, back to top">{{ site.name | escape }}</a>
     <nav class="desktop-nav" aria-label="Main navigation">
       <a href="#profile">About</a>
+      <a href="#education">Education</a>
+      <a href="#research">Background</a>
       <a href="#publications">Publications</a>
-      <a href="#research">Research</a>
       <a href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -41,8 +42,9 @@
   </header>
   <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden>
     <a href="#profile">About</a>
+    <a href="#education">Education</a>
+    <a href="#research">Background</a>
     <a href="#publications">Publications</a>
-    <a href="#research">Research</a>
     <a href="#experience">Experience</a>
     <a href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
     <a href="#contact">Contact</a>
@@ -50,6 +52,7 @@
   <main id="main">
     <section id="top" class="hero" aria-labelledby="hero-title">
       <div class="hero-main">
+        {% if page.profile_label %}<p class="hero-label">{{ page.profile_label | escape }}</p>{% endif %}
         <h1 id="hero-title">{{ page.heading | escape }}</h1>
         <p class="hero-statement">{{ page.subtitle | escape }}</p>
         <div class="hero-intro markdown">{{ content }}</div>
@@ -80,6 +83,26 @@
           <div><dt>{{ fact.label | escape }}</dt><dd>{{ fact.value | escape }}{% if fact.note %}<span>{{ fact.note | escape }}</span>{% endif %}</dd></div>
           {% endfor %}
         </dl>
+      </div>
+    </section>
+
+    <section id="education" class="section education-section" aria-labelledby="education-title">
+      <div class="section-heading"><h2 id="education-title">{{ page.education_heading | escape }}</h2></div>
+      <div class="academic-grid">
+        {% assign education = site.education | sort: 'order' %}
+        {% for item in education %}
+        <article class="academic-entry{% if item.current %} academic-current{% endif %}">
+          {% if item.current %}
+          <div class="academic-label"><p class="eyebrow">Current studies</p><span class="study-status">{{ item.status | escape }}</span></div>
+          {% else %}
+          <p class="eyebrow">Previous education</p>
+          {% endif %}
+          {% if item.credential %}<p class="academic-credential">{{ item.credential | escape }}</p>{% endif %}
+          <h3>{{ item.title | escape }}</h3>
+          <p class="academic-institution">{{ item.institution | escape }}</p>
+          <div class="academic-detail markdown">{{ item.content | markdownify }}</div>
+        </article>
+        {% endfor %}
       </div>
     </section>
 
@@ -123,8 +146,7 @@
 
     <section id="experience" class="section experience-section" aria-labelledby="experience-title">
       <div class="section-heading"><h2 id="experience-title">{{ page.experience_heading | escape }}</h2></div>
-      <div class="section-grid">
-        <div class="section-body">
+      <div class="experience-grid">
           {% assign experience = site.experience | sort: 'order' %}
           {% for item in experience %}
           <article class="experience-row">
@@ -137,19 +159,7 @@
             </div>
           </article>
           {% endfor %}
-        </div>
-        <aside class="education" aria-label="Education">
-          <p class="eyebrow">Education</p>
-          {% assign education = site.education | sort: 'order' %}
-          {% for item in education %}
-          <article>
-            <h3>{{ item.title | escape }}</h3>
-            <p>{{ item.institution | escape }}</p>
-            <div class="education-detail markdown">{{ item.content | markdownify }}</div>
-          </article>
-          {% endfor %}
-          <a class="text-link" href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>Curriculum vitae <span aria-hidden="true">↗</span>{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
-        </aside>
+
       </div>
     </section>
 

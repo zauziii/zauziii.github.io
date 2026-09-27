@@ -2,12 +2,14 @@
 layout: home
 permalink: /
 heading: "Hi, I’m Zhi."
-subtitle: "Biostatistics & Population Health"
-research_heading: "Research & methods"
-research_intro: "Questions I work on and the methods I use."
+profile_label: "Master’s student · University of Helsinki"
+subtitle: "Life Science Informatics"
+education_heading: "Current studies & education"
+research_heading: "Statistical background"
+research_intro: "The quantitative foundation I bring to my current studies."
 publications_heading: "Selected publications"
 publications_intro: "Collaborative work in population health."
-experience_heading: "Experience & education"
+experience_heading: "Professional experience"
 tools:
   - R
   - Python
@@ -18,4 +20,4 @@ tools:
 reporting_tools: "Reporting with Quarto, R Markdown & Jupyter"
 ---
 
-I work with clinical and population health data, with a focus on longitudinal models, survival analysis, and reproducible research.
+I’m on the **Bioinformatics and Systems Medicine** track, building on a background in statistics and population health research.
