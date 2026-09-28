@@ -129,7 +129,9 @@ Use a blank line between paragraphs. Page and card titles come from the fields a
 
 ## Typography and layout
 
-The site retains the light reference style: white space, navy text, pale blue accents, rounded buttons, and a circular portrait frame. Section and skill-category headings use uppercase sans-serif lettering. The greeting, degree titles, job titles, and publication titles retain normal capitalization; the greeting and publication titles use a serif font.
+The site pairs **Inter** for body text, navigation, buttons, and uppercase section headings with **Playfair Display** for the greeting, current degree, project titles, and publication titles. Google Fonts loads the required weights with `display=swap`, so text remains visible while fonts load. Arial and Georgia remain fallback fonts. The greeting, degree titles, job titles, and publication titles retain normal capitalization.
+
+The colour palette keeps dark navy (`#172b3e`) for main headings, uses a lighter blue (`#2a4a5f`) for primary buttons, and adds an accent blue (`#5e90a5`) for navigation indicators, link underlines, icons, focus outlines, and hover borders. Small link text and button labels retain darker or white colours for readability. Adjust the `--button`, `--button-hover`, and `--accent` variables in `styles.css` to change these colours.
 
 Small academic icons, a subtle dot pattern around the portrait, and muted blue, sage, and lavender details add visual interest. Icons are embedded SVGs and require no external font or icon service. Hover effects respect reduced-motion preferences.
 
