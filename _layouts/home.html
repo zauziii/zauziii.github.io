@@ -6,7 +6,7 @@
 {%- if cv_file -%}
   {%- assign cv_url = site.cv | relative_url -%}
 {%- else -%}
-  {%- assign cv_url = '#cv' -%}
+  {%- assign cv_url = site.cv | relative_url -%}
 {%- endif -%}
 <!doctype html>
 <html lang="{{ site.lang | default: 'en' }}">
@@ -88,6 +88,7 @@
     </section>
 
     {% for nav_item in page.navigation %}
+      {% if nav_item.show_section == false %}{% continue %}{% endif %}
       {% assign section_template = 'sections/' | append: nav_item.anchor | append: '.html' %}
       {% include {{ section_template }} %}
     {% endfor %}

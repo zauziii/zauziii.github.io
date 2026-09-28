@@ -30,6 +30,7 @@ navigation:
     show_in_nav: false
   - label: "CV"
     anchor: "cv"
+    show_section: false
 ---
 
 I’m on the **Bioinformatics and Systems Medicine** track, building on a background in statistics and population health research.

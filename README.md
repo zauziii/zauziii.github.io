@@ -186,3 +186,5 @@ The moon/sun button in the header switches themes. On the first visit, the site 
 The **Open to work** and **In progress** labels share the same green status colours in both themes. Theme palettes live in `styles.css`; content still uses the same Markdown files. Printing uses the light palette.
 
 Navigation visibility: add `show_in_nav: false` to an entry in the `navigation` list in `index.md` to hide its menu link while keeping the section in the page. Desktop and mobile use the same links.
+
+The CV navigation link opens the PDF configured in `_config.yml` directly, as does the hero button. Its `show_section: false` setting in `index.md` omits the standalone CV section. Replace `assets/cv.pdf` to update the downloadable CV.

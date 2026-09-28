@@ -1,5 +1,9 @@
 {% for item in page.navigation %}
 {% if item.show_in_nav == false %}{% continue %}{% endif %}
 {% if item.anchor == 'projects' and site.projects.size == 0 %}{% continue %}{% endif %}
+{% if item.anchor == "cv" %}
+<a href="{{ site.cv | relative_url }}" target="_blank" rel="noopener">{{ item.label | escape }}<span class="sr-only"> (PDF, opens in a new tab)</span></a>
+{% else %}
 <a href="#{{ item.anchor | escape }}">{{ item.label | escape }}</a>
+{% endif %}
 {% endfor %}
