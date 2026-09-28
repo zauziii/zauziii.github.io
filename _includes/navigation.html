@@ -1,0 +1,3 @@
+{% for item in page.navigation %}
+<a href="#{{ item.anchor | escape }}">{{ item.label | escape }}</a>
+{% endfor %}

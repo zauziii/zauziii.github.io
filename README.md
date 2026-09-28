@@ -20,14 +20,15 @@ Keep the `---` lines at the top of each Markdown file. The fields between them c
 
 | Content | File or folder |
 | --- | --- |
-| Homepage introduction, headline, section labels, and tools | [`index.md`](index.md) |
+| Homepage introduction, headline, section labels, and shared navigation | [`index.md`](index.md) |
+| Open-to-work status and opportunity types | [`content/_sections/availability.md`](content/_sections/availability.md) |
 | Biography, current study status, and location | [`content/_sections/about.md`](content/_sections/about.md) |
-| Research areas and methods | [`content/_research/`](content/_research/) |
+| Statistics, programming, and tools | [`content/_skills/`](content/_skills/) |
 | Publications | [`content/_publications/`](content/_publications/) |
 | Employment history | [`content/_experience/`](content/_experience/) |
 | Current degree and study track | [`content/_education/00-helsinki.md`](content/_education/00-helsinki.md) |
 | Previous education | [`content/_education/`](content/_education/) |
-| Contact paragraph, social profile buttons, and CV request message | [`content/_sections/contact.md`](content/_sections/contact.md) |
+| Social profile buttons, CV heading, and CV request message | [`content/_sections/contact.md`](content/_sections/contact.md) |
 | Name, email, site description, photograph, and CV filenames | [`_config.yml`](_config.yml) |
 | Photograph and your own CV | [`assets/`](assets/) |
 
@@ -51,9 +52,25 @@ link: "https://doi.org/your-doi"
 
 Entries appear in ascending `order`. Use a lower value to place an entry earlier, and keep the values unique. The filename is for organization; it does not determine the displayed title or order.
 
-Research, experience, and education use the same approach: one Markdown file per entry. Copy an existing file in the relevant folder, change its fields and text, and commit it.
+Skills, experience, and education use the same approach: one Markdown file per entry. Copy an existing file in the relevant folder, change its fields and text, and commit it.
 
-The current Helsinki degree has `current: true` and `status: "In progress"`. This highlights it in the education section before the research background and publications. Update those fields when your study status changes. Enrollment and graduation dates are omitted until you choose to add them.
+The current Helsinki degree has `current: true` and `status: "In progress"`. This highlights it in the education section before skills, experience, and publications. Update those fields when your study status changes. Enrollment and graduation dates are omitted until you choose to add them.
+
+## Availability, skills, and page order
+
+The page follows this order: **Introduction → About → Education → Skills → Experience → Publications → CV**. The availability bar appears above the introduction, and contact buttons appear below it.
+
+Edit `content/_sections/availability.md` to change the **Open to work** label or the types of opportunities you are seeking. Set `active: false` to hide the entire status bar. Write the opportunity description as normal Markdown below the front matter.
+
+Skills are grouped into three Markdown files:
+
+- `content/_skills/01-statistics.md`: statistical methods.
+- `content/_skills/02-programming.md`: languages and libraries.
+- `content/_skills/03-tools.md`: research and development tools.
+
+Edit the bullet lists to update each category. The `order` field controls the order of the cards. The `icon` field selects a small interface icon (`chart`, `code`, or `tools`).
+
+Both navigation menus use the same `navigation` list in `index.md`, including **Experience**. The `anchor` values must match the section IDs in `_layouts/home.html`. The CV navigation item leads to the compact CV download section. Section order is defined in that layout.
 
 ## Add your photograph and CV
 
@@ -76,7 +93,7 @@ The photograph is displayed in a circle without changing the original file. Adju
 
 ## Edit contact buttons
 
-LinkedIn, GitHub, and ORCID links are stored under `social_links` in `content/_sections/contact.md`. Each entry has a `name`, `icon`, and full `url`. The same links appear below the introduction and in the contact section.
+LinkedIn, GitHub, and ORCID links are stored under `social_links` in `content/_sections/contact.md`. Each entry has a `name`, `icon`, and full `url`. The links appear once, below the homepage introduction. There is no repeated contact section at the bottom.
 
 The ORCID entry is ready for your own profile URL. Fill in its empty `url` value to show the button. A blank URL keeps that button hidden. Use your verified profile link rather than a search page or the ORCID homepage.
 
@@ -99,13 +116,14 @@ Use a blank line between paragraphs. Page and card titles come from the fields a
 
 ## Typography and layout
 
-The site retains the light reference style: white space, navy serif headings, pale blue accents, rounded outline buttons, and a circular portrait frame.
+The site retains the light reference style: white space, navy text, pale blue accents, rounded buttons, and a circular portrait frame. Section and skill-category headings use uppercase sans-serif lettering. The greeting, degree titles, job titles, and publication titles retain normal capitalization; the greeting and publication titles use a serif font.
 
-Small academic icons, a subtle dot pattern around the portrait, and muted blue, sage, and lavender details add visual interest. Icons are embedded SVGs and require no external font or icon service. Research cards select their icon with the `icon` field in each Markdown file (`activity`, `people`, or `code`). Hover effects respect reduced-motion preferences.
+Small academic icons, a subtle dot pattern around the portrait, and muted blue, sage, and lavender details add visual interest. Icons are embedded SVGs and require no external font or icon service. Hover effects respect reduced-motion preferences.
 
 - Main body text: **17 px** on desktop and **16 px** on mobile at the browser's default font setting.
 - Introduction: **17–18 px**.
 - Publication titles: **22–24 px**.
+- Uppercase section headings: **19–24 px**, with additional letter spacing.
 - Supporting text: generally **14–16 px**.
 - Headings scale to fit the screen. Font sizes use `rem` units and respect browser font preferences.
 

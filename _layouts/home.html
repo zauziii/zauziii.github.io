@@ -1,5 +1,6 @@
 {%- assign about = site.sections | where: 'key', 'about' | first -%}
 {%- assign contact = site.sections | where: 'key', 'contact' | first -%}
+{%- assign availability = site.sections | where: 'key', 'availability' | first -%}
 {%- assign portrait_file = site.static_files | where: 'path', site.portrait | first -%}
 {%- assign cv_file = site.static_files | where: 'path', site.cv | first -%}
 {%- if cv_file -%}
@@ -31,25 +32,20 @@
   <header class="site-header">
     <a class="wordmark" href="#top" aria-label="{{ site.name | escape }}, back to top">{{ site.name | escape }}</a>
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#profile">About</a>
-      <a href="#education">Education</a>
-      <a href="#research">Background</a>
-      <a href="#publications">Publications</a>
-      <a href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
-      <a href="#contact">Contact</a>
+      {% include navigation.html %}
     </nav>
     <button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" hidden>Menu <span aria-hidden="true">+</span></button>
   </header>
   <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden>
-    <a href="#profile">About</a>
-    <a href="#education">Education</a>
-    <a href="#research">Background</a>
-    <a href="#publications">Publications</a>
-    <a href="#experience">Experience</a>
-    <a href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
-    <a href="#contact">Contact</a>
+    {% include navigation.html %}
   </nav>
   <main id="main">
+    {% if availability.active %}
+    <aside class="availability-banner" aria-label="Work availability">
+      <span class="availability-label"><span class="availability-dot" aria-hidden="true"></span>{{ availability.label | escape }}</span>
+      <div class="availability-detail markdown">{{ availability.content | markdownify }}</div>
+    </aside>
+    {% endif %}
     <section id="top" class="hero" aria-labelledby="hero-title">
       <div class="hero-main">
         {% if page.profile_label %}<p class="hero-label">{% include icon.html name='graduation' %}<span>{{ page.profile_label | escape }}</span></p>{% endif %}
@@ -58,9 +54,8 @@
         <div class="hero-intro markdown">{{ content }}</div>
         <div class="hero-actions">
           <a class="button button-primary" href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>{% include icon.html name='document' %}View CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
-          <a class="button" href="#contact">Get in touch {% include icon.html name='arrow' %}</a>
         </div>
-        {% include social-links.html links=contact.social_links compact=true label='Profile links' %}
+        <div id="contact" class="hero-contact">{% include social-links.html links=contact.social_links compact=true label='Contact and profiles' %}</div>
       </div>
       <figure class="portrait-area" aria-label="{{ site.name | escape }}’s profile">
         <div class="portrait-orbit">
@@ -109,39 +104,16 @@
       </div>
     </section>
 
-    <section id="research" class="section research-section" aria-labelledby="research-title">
-      <div class="section-heading"><h2 id="research-title" class="section-title"><span class="section-icon">{% include icon.html name='chart' %}</span><span>{{ page.research_heading | escape }}</span></h2><p>{{ page.research_intro | escape }}</p></div>
-      <div class="method-grid">
-        {% assign research_items = site.research | sort: 'order' %}
-        {% for item in research_items %}
-        <article class="method">
-          <span class="method-icon" aria-hidden="true">{% include icon.html name=item.icon %}</span>
+    <section id="skills" class="section skills-section" aria-labelledby="skills-title">
+      <span id="research" class="anchor-alias" aria-hidden="true"></span>
+      <div class="section-heading"><h2 id="skills-title" class="section-title"><span class="section-icon">{% include icon.html name='chart' %}</span><span>{{ page.skills_heading | escape }}</span></h2><p>{{ page.skills_intro | escape }}</p></div>
+      <div class="skills-grid">
+        {% assign skill_groups = site.skills | sort: 'order' %}
+        {% for item in skill_groups %}
+        <article class="skill-card">
+          <span class="skill-icon" aria-hidden="true">{% include icon.html name=item.icon %}</span>
           <h3>{{ item.title | escape }}</h3>
-          <div class="method-content markdown">{{ item.content | markdownify }}</div>
-        </article>
-        {% endfor %}
-      </div>
-      <div class="toolbox">
-        <p class="eyebrow">Tools I work with</p>
-        <ul>{% for tool in page.tools %}<li>{{ tool | escape }}</li>{% endfor %}</ul>
-        <p class="toolbox-note">{{ page.reporting_tools | escape }}</p>
-      </div>
-    </section>
-
-    <section id="publications" class="section publications-section" aria-labelledby="publications-title">
-      <div class="section-heading"><h2 id="publications-title" class="section-title"><span class="section-icon">{% include icon.html name='book' %}</span><span>{{ page.publications_heading | escape }}</span></h2><p>{{ page.publications_intro | escape }}</p></div>
-      <div class="publication-list">
-        {% assign publications = site.publications | sort: 'order' %}
-        {% for item in publications %}
-        <article class="publication">
-          <div class="publication-meta"><span class="pub-year">{{ item.year }}</span><span class="pub-type">{{ item.topic | escape }}</span></div>
-          <div class="publication-content">
-            <p class="journal">{{ item.journal | escape }}</p>
-            <h3><a href="{{ item.link | escape }}" target="_blank" rel="noopener noreferrer">{{ item.title | escape }}<span class="sr-only"> (opens in a new tab)</span></a></h3>
-            <div class="authors markdown">{{ item.authors | markdownify }}</div>
-            <div class="publication-detail markdown">{{ item.content | markdownify }}</div>
-          </div>
-          <span class="publication-arrow" aria-hidden="true">↗</span>
+          <div class="skill-list markdown">{{ item.content | markdownify }}</div>
         </article>
         {% endfor %}
       </div>
@@ -166,23 +138,33 @@
       </div>
     </section>
 
-    <section id="contact" class="section contact-section" aria-labelledby="contact-title">
-      <div class="contact-card">
-        <div>
-          <h2 id="contact-title" class="section-title"><span class="section-icon">{% include icon.html name='email' %}</span><span>{{ contact.title | escape }}</span></h2>
-          <div class="contact-intro markdown">{{ contact.content | markdownify }}</div>
-          {% include social-links.html links=contact.social_links label='Contact and profiles' %}
-        </div>
-        <div id="cv" class="contact-side">
-          <span class="cv-icon" aria-hidden="true">{% include icon.html name='document' %}</span>
-          <h3 class="eyebrow">{{ contact.cv_heading | escape }}</h3>
-          {% if cv_file %}
-          <a class="button" href="{{ cv_url }}" download>Download CV {% include icon.html name='download' %}<span class="sr-only"> (PDF)</span></a>
-          {% else %}
-          <p>{{ contact.cv_on_request | escape }}</p>
-          <a class="button" href="mailto:{{ site.email | escape }}?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a>
-          {% endif %}
-        </div>
+    <section id="publications" class="section publications-section" aria-labelledby="publications-title">
+      <div class="section-heading"><h2 id="publications-title" class="section-title"><span class="section-icon">{% include icon.html name='book' %}</span><span>{{ page.publications_heading | escape }}</span></h2><p>{{ page.publications_intro | escape }}</p></div>
+      <div class="publication-list">
+        {% assign publications = site.publications | sort: 'order' %}
+        {% for item in publications %}
+        <article class="publication">
+          <div class="publication-meta"><span class="pub-year">{{ item.year }}</span><span class="pub-type">{{ item.topic | escape }}</span></div>
+          <div class="publication-content">
+            <p class="journal">{{ item.journal | escape }}</p>
+            <h3><a href="{{ item.link | escape }}" target="_blank" rel="noopener noreferrer">{{ item.title | escape }}<span class="sr-only"> (opens in a new tab)</span></a></h3>
+            <div class="authors markdown">{{ item.authors | markdownify }}</div>
+            <div class="publication-detail markdown">{{ item.content | markdownify }}</div>
+          </div>
+          <span class="publication-arrow" aria-hidden="true">↗</span>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="cv" class="section cv-section" aria-labelledby="cv-title">
+      <div class="cv-card">
+        <h2 id="cv-title" class="section-title"><span class="section-icon">{% include icon.html name='document' %}</span><span>{{ contact.cv_heading | escape }}</span></h2>
+        {% if cv_file %}
+        <a class="button" href="{{ cv_url }}" download>Download CV {% include icon.html name='download' %}<span class="sr-only"> (PDF)</span></a>
+        {% else %}
+        <div class="cv-request"><p>{{ contact.cv_on_request | escape }}</p><a class="button" href="mailto:{{ site.email | escape }}?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a></div>
+        {% endif %}
       </div>
     </section>
   </main>

@@ -1,6 +1,5 @@
 ---
 key: contact
-title: "Let’s connect."
 cv_heading: "Curriculum vitae"
 cv_on_request: "Please get in touch for my current CV."
 social_links:
@@ -15,5 +14,3 @@ social_links:
     icon: "orcid"
     url: ""
 ---
-
-For research collaborations and opportunities in bioinformatics, systems medicine, and biostatistics.
