@@ -16,6 +16,7 @@ experience_heading: "Professional experience"
 navigation:
   - label: "About"
     anchor: "profile"
+    show_in_nav: false
   - label: "Education"
     anchor: "education"
   - label: "Experience"
@@ -26,6 +27,7 @@ navigation:
     anchor: "publications"
   - label: "Skills"
     anchor: "skills"
+    show_in_nav: false
   - label: "CV"
     anchor: "cv"
 ---

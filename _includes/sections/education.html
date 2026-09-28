@@ -5,7 +5,7 @@
     {% for item in education %}
     <article class="academic-entry{% if item.current %} academic-current{% endif %}">
       {% if item.current %}
-      <div class="academic-label"><p class="eyebrow">Current studies</p><span class="study-status">{{ item.status | escape }}</span></div>
+      <div class="academic-label"><p class="eyebrow">Current studies</p><span class="study-status"><span class="study-status-label">{{ item.status | escape }}</span></span></div>
       {% else %}
       <p class="eyebrow">Previous education</p>
       {% endif %}

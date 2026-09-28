@@ -184,3 +184,5 @@ The favicon is a rounded blue tile with two geometric Z initials, drawn as SVG p
 The moon/sun button in the header switches themes. On the first visit, the site follows the device's colour preference. A manual choice is saved in the browser and used on later visits. Theme colours are applied before the page renders to reduce flashes of the wrong theme. If browser storage is unavailable, the switch still works for the current page.
 
 The **Open to work** and **In progress** labels share the same green status colours in both themes. Theme palettes live in `styles.css`; content still uses the same Markdown files. Printing uses the light palette.
+
+Navigation visibility: add `show_in_nav: false` to an entry in the `navigation` list in `index.md` to hide its menu link while keeping the section in the page. Desktop and mobile use the same links.
