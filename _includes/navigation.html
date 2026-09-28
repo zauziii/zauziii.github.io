@@ -1,3 +1,4 @@
 {% for item in page.navigation %}
+{% if item.anchor == 'projects' and site.projects.size == 0 %}{% continue %}{% endif %}
 <a href="#{{ item.anchor | escape }}">{{ item.label | escape }}</a>
 {% endfor %}

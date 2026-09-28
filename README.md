@@ -20,7 +20,7 @@ Keep the `---` lines at the top of each Markdown file. The fields between them c
 
 | Content | File or folder |
 | --- | --- |
-| Homepage introduction, headline, section labels, and shared navigation | [`index.md`](index.md) |
+| Homepage introduction, headline, section labels, and page/navigation order | [`index.md`](index.md) |
 | Open-to-work status and opportunity types | [`content/_sections/availability.md`](content/_sections/availability.md) |
 | Biography, current study status, and location | [`content/_sections/about.md`](content/_sections/about.md) |
 | Statistics, programming, and tools | [`content/_skills/`](content/_skills/) |
@@ -59,7 +59,7 @@ The current Helsinki degree has `current: true` and `status: "In progress"`. Thi
 
 ## Availability, skills, and page order
 
-The page follows this order: **Introduction → About → Education → Skills → Projects → Experience → Publications → CV**. A compact availability pill appears above the introduction, and contact buttons appear below it.
+The page follows this order: **Introduction → About → Education → Experience → Projects → Publications → Skills → CV**. Current studies come first, followed by professional context and concrete examples of research work. Detailed skills follow the projects and publications. A compact availability pill appears above the introduction, and contact buttons appear below it.
 
 Edit `content/_sections/availability.md` to change the **Open to work** label or the types of opportunities you are seeking. Set `active: false` to hide it. Write the opportunity description as one paragraph below the front matter. The pill displays the label and description as a single line of text that wraps naturally on small screens; Markdown formatting is removed for this short status message.
 
@@ -75,11 +75,15 @@ Edit the bullet lists to update each category. Start a list item with a **bold s
 
 Projects live in `content/_projects/`, with one Markdown file per project. The current entries summarise three THL projects from the uploaded CV and describe your contributions. Each has a title, organisation, period, and a short list of methods. Add an optional `link` and `link_label` for a related paper, project page, or public code repository. An entry without a link displays normally.
 
-Write the project context and your contribution in the Markdown body. Use `order` to arrange entries. Add future coursework or thesis projects here when you have concrete work to describe. The section is designed for selected examples, so three or four focused entries are enough.
+Write the project context and your contribution in the Markdown body. Use `order` to arrange entries; the current projects run from most recent to oldest. Add future coursework or thesis projects here when you have concrete work to describe. The section is designed for selected examples, so three or four focused entries are enough. The homepage's **Explore projects** button leads directly to this section; its label is the `projects_cta` field in `index.md`.
 
 ## Navigation
 
-Both navigation menus use the same `navigation` list in `index.md`, including **Experience**. The `anchor` values must match the section IDs in `_layouts/home.html`. The CV navigation item leads to the compact CV download section. Section order is defined in that layout.
+Both navigation menus **and the page sections** use the same `navigation` list in `index.md`. Move a complete `label`/`anchor` pair up or down to change the order everywhere. You do not need to edit HTML. Keep each entry unique.
+
+The supported anchors are `profile`, `education`, `experience`, `projects`, `publications`, `skills`, and `cv`. Each corresponds to a template in `_includes/sections/`. Keep the anchor names unchanged when relabelling or rearranging items. The CV navigation item leads to the compact CV download section.
+
+The header stays visible while scrolling, and both menus highlight the section being read. Anchor links leave room for the header. The mobile menu supports keyboard navigation and Escape to close; smooth scrolling respects reduced-motion preferences.
 
 ## Add your photograph and CV
 
@@ -136,7 +140,7 @@ Small academic icons, a subtle dot pattern around the portrait, and muted blue, 
 - Supporting text: generally **14–16 px**.
 - Headings scale to fit the screen. Font sizes use `rem` units and respect browser font preferences.
 
-Optional design changes belong in `styles.css`. The page structure is in `_layouts/home.html`. Routine content updates only require Markdown.
+Optional design changes belong in `styles.css`. The page shell is in `_layouts/home.html`, and section templates are in `_includes/sections/`. Routine content and ordering updates only require Markdown.
 
 ## GitHub Pages settings
 

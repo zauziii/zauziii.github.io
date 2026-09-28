@@ -1,7 +1,7 @@
 'use strict';
 
 // Content, photograph, and CV links are rendered by Jekyll.
-// JavaScript only enhances the mobile menu and footer year.
+// JavaScript enhances navigation; content remains available in the rendered HTML.
 const menuButton = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('#mobile-menu');
 const smallScreen = window.matchMedia('(max-width: 48rem)');
@@ -64,3 +64,38 @@ document.addEventListener('keydown', (event) => {
 smallScreen.addEventListener('change', updateMenuVisibility);
 updateMenuVisibility();
 document.querySelector('#copyright-year').textContent = new Date().getFullYear();
+
+// Keep both menus in sync with the section being read.
+const navigationLinks = [...document.querySelectorAll('.desktop-nav a, .mobile-menu a')];
+const pageSections = [...document.querySelectorAll('main > .section[id]')];
+const header = document.querySelector('.site-header');
+let activeSection = null;
+let navigationFrame = 0;
+
+function updateActiveSection() {
+  navigationFrame = 0;
+  const readingLine = header.getBoundingClientRect().height + 64;
+  let current = '';
+  for (const section of pageSections) {
+    const heading = section.querySelector('h2');
+    if (heading && heading.getBoundingClientRect().top <= readingLine) current = section.id;
+  }
+  if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    current = pageSections[pageSections.length - 1]?.id || current;
+  }
+  if (current === activeSection) return;
+  activeSection = current;
+  for (const link of navigationLinks) {
+    if (current && link.hash === '#' + current) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+function scheduleNavigationUpdate() {
+  if (!navigationFrame) navigationFrame = window.requestAnimationFrame(updateActiveSection);
+}
+
+window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
+window.addEventListener('resize', scheduleNavigationUpdate);
+window.addEventListener('pageshow', scheduleNavigationUpdate);
+scheduleNavigationUpdate();

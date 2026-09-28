@@ -1,8 +1,10 @@
 ---
-order: 2
+order: 1
 title: "Multimorbidity and future service needs"
 organization: "THL"
 period: "2023–2024"
+link: "https://www.laakarilehti.fi/tieteessa/alkuperaistutkimukset/monisairastavuus-kuormittaa-terveydenhuoltoa-yha-enemman/en"
+link_label: "Related publication"
 methods:
   - "Multiple imputation"
   - "Cox regression"

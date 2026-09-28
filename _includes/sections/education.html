@@ -1,0 +1,19 @@
+<section id="education" class="section education-section" aria-labelledby="education-title">
+  <div class="section-heading"><h2 id="education-title" class="section-title"><span class="section-icon">{% include icon.html name='graduation' %}</span><span>{{ page.education_heading | escape }}</span></h2></div>
+  <div class="academic-grid">
+    {% assign education = site.education | sort: 'order' %}
+    {% for item in education %}
+    <article class="academic-entry{% if item.current %} academic-current{% endif %}">
+      {% if item.current %}
+      <div class="academic-label"><p class="eyebrow">Current studies</p><span class="study-status">{{ item.status | escape }}</span></div>
+      {% else %}
+      <p class="eyebrow">Previous education</p>
+      {% endif %}
+      {% if item.credential %}<p class="academic-credential">{{ item.credential | escape }}</p>{% endif %}
+      <h3>{{ item.title | escape }}</h3>
+      <p class="academic-institution">{{ item.institution | escape }}</p>
+      <div class="academic-detail markdown">{{ item.content | markdownify }}</div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

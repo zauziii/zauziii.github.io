@@ -1,0 +1,14 @@
+<section id="skills" class="section skills-section" aria-labelledby="skills-title">
+  <span id="research" class="anchor-alias" aria-hidden="true"></span>
+  <div class="section-heading"><h2 id="skills-title" class="section-title"><span class="section-icon">{% include icon.html name='chart' %}</span><span>{{ page.skills_heading | escape }}</span></h2><p>{{ page.skills_intro | escape }}</p></div>
+  <div class="skills-grid">
+    {% assign skill_groups = site.skills | sort: 'order' %}
+    {% for item in skill_groups %}
+    <article class="skill-card">
+      <span class="skill-icon" aria-hidden="true">{% include icon.html name=item.icon %}</span>
+      <h3>{{ item.title | escape }}</h3>
+      <div class="skill-list markdown">{{ item.content | markdownify }}</div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

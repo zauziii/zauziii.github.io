@@ -1,0 +1,11 @@
+<section id="profile" class="section profile-section" aria-labelledby="profile-title">
+  <div class="about-card">
+    <h2 id="profile-title" class="section-title"><span class="section-icon">{% include icon.html name='person' %}</span><span>{{ about.title | escape }}</span></h2>
+    <div class="bio-columns markdown">{{ about.content | markdownify }}</div>
+    <dl class="profile-facts">
+      {% for fact in about.facts %}
+      <div><dt>{{ fact.label | escape }}</dt><dd>{{ fact.value | escape }}{% if fact.note %}<span>{{ fact.note | escape }}</span>{% endif %}</dd></div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>

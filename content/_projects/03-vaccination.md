@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 2
 title: "Tobacco use and vaccination uptake"
 organization: "THL"
 period: "2022–2023"

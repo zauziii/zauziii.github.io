@@ -1,0 +1,10 @@
+<section id="cv" class="section cv-section" aria-labelledby="cv-title">
+  <div class="cv-card">
+    <h2 id="cv-title" class="section-title"><span class="section-icon">{% include icon.html name='document' %}</span><span>{{ contact.cv_heading | escape }}</span></h2>
+    {% if cv_file %}
+    <a class="button" href="{{ cv_url }}" download>Download CV {% include icon.html name='download' %}<span class="sr-only"> (PDF)</span></a>
+    {% else %}
+    <div class="cv-request"><p>{{ contact.cv_on_request | escape }}</p><a class="button" href="mailto:{{ site.email | escape }}?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a></div>
+    {% endif %}
+  </div>
+</section>

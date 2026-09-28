@@ -1,0 +1,18 @@
+<section id="publications" class="section publications-section" aria-labelledby="publications-title">
+  <div class="section-heading"><h2 id="publications-title" class="section-title"><span class="section-icon">{% include icon.html name='book' %}</span><span>{{ page.publications_heading | escape }}</span></h2><p>{{ page.publications_intro | escape }}</p></div>
+  <div class="publication-list">
+    {% assign publications = site.publications | sort: 'order' %}
+    {% for item in publications %}
+    <article class="publication">
+      <div class="publication-meta"><span class="pub-year">{{ item.year }}</span><span class="pub-type">{{ item.topic | escape }}</span></div>
+      <div class="publication-content">
+        <p class="journal">{{ item.journal | escape }}</p>
+        <h3><a href="{{ item.link | escape }}" target="_blank" rel="noopener noreferrer">{{ item.title | escape }}<span class="sr-only"> (opens in a new tab)</span></a></h3>
+        <div class="authors markdown">{{ item.authors | markdownify }}</div>
+        <div class="publication-detail markdown">{{ item.content | markdownify }}</div>
+      </div>
+      <span class="publication-arrow" aria-hidden="true">↗</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>

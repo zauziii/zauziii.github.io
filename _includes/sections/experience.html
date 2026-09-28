@@ -1,0 +1,18 @@
+<section id="experience" class="section experience-section" aria-labelledby="experience-title">
+  <div class="section-heading"><h2 id="experience-title" class="section-title"><span class="section-icon">{% include icon.html name='briefcase' %}</span><span>{{ page.experience_heading | escape }}</span></h2></div>
+  <div class="experience-grid">
+      {% assign experience = site.experience | sort: 'order' %}
+      {% for item in experience %}
+      <article class="experience-row">
+        <p class="date">{{ item.period | escape }}</p>
+        <div>
+          <h3>{{ item.title | escape }}</h3>
+          <p class="organization">{{ item.organization | escape }}</p>
+          <p class="organization-detail">{{ item.department | escape }}</p>
+          <div class="experience-description markdown">{{ item.content | markdownify }}</div>
+        </div>
+      </article>
+      {% endfor %}
+
+  </div>
+</section>
