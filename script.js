@@ -99,3 +99,25 @@ window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
 window.addEventListener('resize', scheduleNavigationUpdate);
 window.addEventListener('pageshow', scheduleNavigationUpdate);
 scheduleNavigationUpdate();
+
+// Animate each below-the-fold section once, without hiding content by default.
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+let entranceObserver;
+function setupEntrances() {
+  entranceObserver?.disconnect();
+  document.querySelectorAll('.reveal-enter').forEach(section => section.classList.remove('reveal-enter'));
+  if (motionPreference.matches || !('IntersectionObserver' in window)) return;
+  entranceObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('reveal-enter');
+      entranceObserver.unobserve(entry.target);
+      entry.target.addEventListener('animationend', () => entry.target.classList.remove('reveal-enter'), { once: true });
+    }
+  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+  for (const section of pageSections) {
+    if (section.getBoundingClientRect().top >= window.innerHeight) entranceObserver.observe(section);
+  }
+}
+motionPreference.addEventListener('change', setupEntrances);
+setupEntrances();

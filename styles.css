@@ -68,7 +68,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .85rem; min-height: 3rem; padding: .65rem 1.6rem; border: 1px solid var(--button); border-radius: 999px; color: var(--button); font-size: .9375rem; font-weight: 500; line-height: 1.5; transition: background .18s, color .18s, border-color .18s, box-shadow .18s; }
 .button:hover { color: #fff; background: var(--button-hover); border-color: var(--accent); box-shadow: 0 0 0 3px #5e90a51a; }
-.button .icon { width: 1.125rem; height: 1.125rem; }
+.button .icon { width: 1.125rem; height: 1.125rem; align-self: center; }
+.button-label { display: block; line-height: 1; transform: translateY(-.5px); }
 .button-primary { background: var(--button); color: #fff; }
 .button-secondary { border-color: #ccdce5; color: var(--button); }
 .button-secondary .icon { color: var(--accent); }
@@ -279,3 +280,20 @@ h2 { color: var(--ink); font-family: var(--sans); font-size: clamp(1.2rem, 2vw, 
   .publication { grid-template-columns: 5rem 1fr; }
   .publication h3 { font-size: 1.25rem; }
 }
+
+/* One gentle entrance per section; content is visible without JavaScript. */
+@keyframes section-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .section.reveal-enter { animation: section-enter .55s cubic-bezier(.2,.65,.3,1) both; }
+}
+.academic-entry, .skill-card, .project-entry, .experience-row {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .academic-entry:hover, .skill-card:hover { transform: translateY(-3px); border-color: #adc9d6; box-shadow: 0 8px 22px #2a4a5f0d; }
+  .project-entry:hover, .experience-row:hover { transform: translateY(-2px); }
+}
+@media print { .section.reveal-enter { animation: none !important; opacity: 1 !important; transform: none !important; } }

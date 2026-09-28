@@ -170,3 +170,11 @@ The optional Node preview server (`npm run dev`) serves an existing `_site/` bui
 - [GitHub Pages and Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll)
 - [Adding content with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-content-to-your-github-pages-site-using-jekyll)
 - [Jekyll collections](https://jekyllrb.com/docs/collections/)
+
+## Locations, motion, and favicon
+
+Employment entries use `location: "Helsinki, Finland"` for the third line. Edit this field in `content/_experience/` when a role's location changes.
+
+Below-the-fold sections fade in and rise 16 px once as they enter the viewport. Cards lift slightly on devices with a mouse. Reduced-motion preferences disable these effects; content remains visible without JavaScript and in print.
+
+The favicon is a rounded blue tile with two geometric Z initials, drawn as SVG paths so it does not depend on a font. Edit `assets/favicon.svg` to change it.

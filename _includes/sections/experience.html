@@ -8,7 +8,7 @@
         <div>
           <h3>{{ item.title | escape }}</h3>
           <p class="organization">{{ item.organization | escape }}</p>
-          <p class="organization-detail">{{ item.department | escape }}</p>
+          <p class="organization-detail">{{ item.location | escape }}</p>
           <div class="experience-description markdown">{{ item.content | markdownify }}</div>
         </div>
       </article>
