@@ -1,5 +1,34 @@
 'use strict';
 
+// Follow the system until the visitor chooses a theme; storage is optional.
+const themeToggle = document.querySelector('.theme-toggle');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+let preferredTheme;
+try { preferredTheme = localStorage.getItem('zhi-theme'); } catch (_) {}
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  themeToggle.setAttribute('aria-label', label);
+  themeToggle.title = label;
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e1d28' : '#ffffff';
+}
+function updateTheme() {
+  applyTheme(preferredTheme === 'light' || preferredTheme === 'dark' ? preferredTheme : (systemTheme.matches ? 'dark' : 'light'));
+}
+themeToggle.addEventListener('click', () => {
+  preferredTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(preferredTheme);
+  try { localStorage.setItem('zhi-theme', preferredTheme); } catch (_) {}
+});
+systemTheme.addEventListener('change', updateTheme);
+window.addEventListener('storage', event => {
+  if (event.key !== 'zhi-theme' && event.key !== null) return;
+  preferredTheme = event.newValue;
+  updateTheme();
+});
+updateTheme();
+themeToggle.hidden = false;
+
 // Content, photograph, and CV links are rendered by Jekyll.
 // JavaScript enhances navigation; content remains available in the rendered HTML.
 const menuButton = document.querySelector('.menu-toggle');

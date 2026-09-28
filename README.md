@@ -178,3 +178,9 @@ Employment entries use `location: "Helsinki, Finland"` for the third line. Edit 
 Below-the-fold sections fade in and rise 16 px once as they enter the viewport. Cards lift slightly on devices with a mouse. Reduced-motion preferences disable these effects; content remains visible without JavaScript and in print.
 
 The favicon is a rounded blue tile with two geometric Z initials, drawn as SVG paths so it does not depend on a font. Edit `assets/favicon.svg` to change it.
+
+## Light and dark themes
+
+The moon/sun button in the header switches themes. On the first visit, the site follows the device's colour preference. A manual choice is saved in the browser and used on later visits. Theme colours are applied before the page renders to reduce flashes of the wrong theme. If browser storage is unavailable, the switch still works for the current page.
+
+The **Open to work** and **In progress** labels share the same green status colours in both themes. Theme palettes live in `styles.css`; content still uses the same Markdown files. Printing uses the light palette.
