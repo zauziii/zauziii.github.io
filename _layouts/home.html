@@ -52,17 +52,20 @@
   <main id="main">
     <section id="top" class="hero" aria-labelledby="hero-title">
       <div class="hero-main">
-        {% if page.profile_label %}<p class="hero-label">{{ page.profile_label | escape }}</p>{% endif %}
+        {% if page.profile_label %}<p class="hero-label">{% include icon.html name='graduation' %}<span>{{ page.profile_label | escape }}</span></p>{% endif %}
         <h1 id="hero-title">{{ page.heading | escape }}</h1>
         <p class="hero-statement">{{ page.subtitle | escape }}</p>
         <div class="hero-intro markdown">{{ content }}</div>
         <div class="hero-actions">
-          <a class="button" href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>View CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
-          <a class="button" href="#contact">Get in touch</a>
+          <a class="button button-primary" href="{{ cv_url }}"{% if cv_file %} target="_blank" rel="noopener"{% endif %}>{% include icon.html name='document' %}View CV{% if cv_file %}<span class="sr-only"> (PDF, opens in a new tab)</span>{% endif %}</a>
+          <a class="button" href="#contact">Get in touch {% include icon.html name='arrow' %}</a>
         </div>
+        {% include social-links.html links=contact.social_links compact=true label='Profile links' %}
       </div>
       <figure class="portrait-area" aria-label="{{ site.name | escape }}’s profile">
         <div class="portrait-orbit">
+          <span class="orbit-badge orbit-badge--dna" aria-hidden="true">{% include icon.html name='dna' %}</span>
+          <span class="orbit-badge orbit-badge--chart" aria-hidden="true">{% include icon.html name='chart' %}</span>
           <div class="portrait-frame">
             {% if portrait_file %}
             <img src="{{ site.portrait | relative_url }}" alt="{{ site.name | escape }}" width="480" height="480" style="object-position: {{ site.portrait_position | escape }}" decoding="async" fetchpriority="high">
@@ -76,7 +79,7 @@
 
     <section id="profile" class="section profile-section" aria-labelledby="profile-title">
       <div class="about-card">
-        <h2 id="profile-title">{{ about.title | escape }}</h2>
+        <h2 id="profile-title" class="section-title"><span class="section-icon">{% include icon.html name='person' %}</span><span>{{ about.title | escape }}</span></h2>
         <div class="bio-columns markdown">{{ about.content | markdownify }}</div>
         <dl class="profile-facts">
           {% for fact in about.facts %}
@@ -87,7 +90,7 @@
     </section>
 
     <section id="education" class="section education-section" aria-labelledby="education-title">
-      <div class="section-heading"><h2 id="education-title">{{ page.education_heading | escape }}</h2></div>
+      <div class="section-heading"><h2 id="education-title" class="section-title"><span class="section-icon">{% include icon.html name='graduation' %}</span><span>{{ page.education_heading | escape }}</span></h2></div>
       <div class="academic-grid">
         {% assign education = site.education | sort: 'order' %}
         {% for item in education %}
@@ -107,12 +110,12 @@
     </section>
 
     <section id="research" class="section research-section" aria-labelledby="research-title">
-      <div class="section-heading"><h2 id="research-title">{{ page.research_heading | escape }}</h2><p>{{ page.research_intro | escape }}</p></div>
+      <div class="section-heading"><h2 id="research-title" class="section-title"><span class="section-icon">{% include icon.html name='chart' %}</span><span>{{ page.research_heading | escape }}</span></h2><p>{{ page.research_intro | escape }}</p></div>
       <div class="method-grid">
         {% assign research_items = site.research | sort: 'order' %}
         {% for item in research_items %}
         <article class="method">
-          <span class="method-number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          <span class="method-icon" aria-hidden="true">{% include icon.html name=item.icon %}</span>
           <h3>{{ item.title | escape }}</h3>
           <div class="method-content markdown">{{ item.content | markdownify }}</div>
         </article>
@@ -126,7 +129,7 @@
     </section>
 
     <section id="publications" class="section publications-section" aria-labelledby="publications-title">
-      <div class="section-heading"><h2 id="publications-title">{{ page.publications_heading | escape }}</h2><p>{{ page.publications_intro | escape }}</p></div>
+      <div class="section-heading"><h2 id="publications-title" class="section-title"><span class="section-icon">{% include icon.html name='book' %}</span><span>{{ page.publications_heading | escape }}</span></h2><p>{{ page.publications_intro | escape }}</p></div>
       <div class="publication-list">
         {% assign publications = site.publications | sort: 'order' %}
         {% for item in publications %}
@@ -145,7 +148,7 @@
     </section>
 
     <section id="experience" class="section experience-section" aria-labelledby="experience-title">
-      <div class="section-heading"><h2 id="experience-title">{{ page.experience_heading | escape }}</h2></div>
+      <div class="section-heading"><h2 id="experience-title" class="section-title"><span class="section-icon">{% include icon.html name='briefcase' %}</span><span>{{ page.experience_heading | escape }}</span></h2></div>
       <div class="experience-grid">
           {% assign experience = site.experience | sort: 'order' %}
           {% for item in experience %}
@@ -166,15 +169,15 @@
     <section id="contact" class="section contact-section" aria-labelledby="contact-title">
       <div class="contact-card">
         <div>
-          <h2 id="contact-title">{{ contact.title | escape }}</h2>
+          <h2 id="contact-title" class="section-title"><span class="section-icon">{% include icon.html name='email' %}</span><span>{{ contact.title | escape }}</span></h2>
           <div class="contact-intro markdown">{{ contact.content | markdownify }}</div>
-          <a class="email-link" href="mailto:{{ site.email | escape }}">{{ site.email | escape }} <span aria-hidden="true">↗</span></a>
+          {% include social-links.html links=contact.social_links label='Contact and profiles' %}
         </div>
         <div id="cv" class="contact-side">
+          <span class="cv-icon" aria-hidden="true">{% include icon.html name='document' %}</span>
           <h3 class="eyebrow">{{ contact.cv_heading | escape }}</h3>
           {% if cv_file %}
-          <p>{{ contact.cv_available | escape }}</p>
-          <a class="button" href="{{ cv_url }}" download>Download CV <span aria-hidden="true">↓</span><span class="sr-only"> (PDF)</span></a>
+          <a class="button" href="{{ cv_url }}" download>Download CV {% include icon.html name='download' %}<span class="sr-only"> (PDF)</span></a>
           {% else %}
           <p>{{ contact.cv_on_request | escape }}</p>
           <a class="button" href="mailto:{{ site.email | escape }}?subject=CV%20request">Request CV <span aria-hidden="true">↗</span></a>

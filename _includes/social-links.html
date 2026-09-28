@@ -1,0 +1,11 @@
+<nav class="social-links{% if include.compact %} social-links--compact{% endif %}" aria-label="{{ include.label | escape }}">
+  {% if site.email and site.email != '' %}
+  <a class="social-link social-link--email" href="mailto:{{ site.email | escape }}">{% include icon.html name='email' %}<span>Email</span></a>
+  {% endif %}
+  {% for profile in include.links %}
+  {% assign profile_url = profile.url | strip %}
+  {% if profile_url != '' %}
+  <a class="social-link social-link--{{ profile.icon | escape }}" href="{{ profile_url | escape }}" target="_blank" rel="noopener noreferrer">{% include icon.html name=profile.icon %}<span>{{ profile.name | escape }}</span><span class="sr-only"> (opens in a new tab)</span></a>
+  {% endif %}
+  {% endfor %}
+</nav>

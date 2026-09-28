@@ -27,7 +27,7 @@ Keep the `---` lines at the top of each Markdown file. The fields between them c
 | Employment history | [`content/_experience/`](content/_experience/) |
 | Current degree and study track | [`content/_education/00-helsinki.md`](content/_education/00-helsinki.md) |
 | Previous education | [`content/_education/`](content/_education/) |
-| Contact paragraph and CV messages | [`content/_sections/contact.md`](content/_sections/contact.md) |
+| Contact paragraph, social profile buttons, and CV request message | [`content/_sections/contact.md`](content/_sections/contact.md) |
 | Name, email, site description, photograph, and CV filenames | [`_config.yml`](_config.yml) |
 | Photograph and your own CV | [`assets/`](assets/) |
 
@@ -74,6 +74,16 @@ cv: "/assets/cv.pdf"
 
 The photograph is displayed in a circle without changing the original file. Adjust `portrait_position` to move the crop.
 
+## Edit contact buttons
+
+LinkedIn, GitHub, and ORCID links are stored under `social_links` in `content/_sections/contact.md`. Each entry has a `name`, `icon`, and full `url`. The same links appear below the introduction and in the contact section.
+
+The ORCID entry is ready for your own profile URL. Fill in its empty `url` value to show the button. A blank URL keeps that button hidden. Use your verified profile link rather than a search page or the ORCID homepage.
+
+The **Email** button uses `email` in `_config.yml` and opens the visitor's email app. The address is not displayed as page text. It remains in the email link so visitors can contact you.
+
+Your uploaded PDF is linked directly from **View CV** and **Download CV**. No extra description is displayed below the CV heading, and the site does not generate or rewrite the PDF.
+
 ## Markdown basics
 
 ```markdown
@@ -90,6 +100,8 @@ Use a blank line between paragraphs. Page and card titles come from the fields a
 ## Typography and layout
 
 The site retains the light reference style: white space, navy serif headings, pale blue accents, rounded outline buttons, and a circular portrait frame.
+
+Small academic icons, a subtle dot pattern around the portrait, and muted blue, sage, and lavender details add visual interest. Icons are embedded SVGs and require no external font or icon service. Research cards select their icon with the `icon` field in each Markdown file (`activity`, `people`, or `code`). Hover effects respect reduced-motion preferences.
 
 - Main body text: **17 px** on desktop and **16 px** on mobile at the browser's default font setting.
 - Introduction: **17–18 px**.

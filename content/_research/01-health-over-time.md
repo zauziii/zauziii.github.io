@@ -1,5 +1,6 @@
 ---
 order: 1
+icon: "activity"
 title: "Health over time"
 ---
 

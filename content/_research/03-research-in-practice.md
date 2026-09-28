@@ -1,5 +1,6 @@
 ---
 order: 3
+icon: "code"
 title: "Research in practice"
 ---
 
