@@ -33,7 +33,7 @@ themeToggle.hidden = false;
 // JavaScript enhances navigation; content remains available in the rendered HTML.
 const menuButton = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('#mobile-menu');
-const smallScreen = window.matchMedia('(max-width: 48rem)');
+const smallScreen = window.matchMedia('(max-width: 56rem)');
 
 function closeMenu(returnFocus = false) {
   mobileMenu.hidden = true;
@@ -103,6 +103,7 @@ let navigationFrame = 0;
 
 function updateActiveSection() {
   navigationFrame = 0;
+  header.classList.toggle("is-scrolled", window.scrollY > 8);
   const readingLine = header.getBoundingClientRect().height + 64;
   let current = '';
   for (const section of pageSections) {

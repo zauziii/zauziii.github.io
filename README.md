@@ -188,3 +188,5 @@ The **Open to work** and **In progress** labels share the same green status colo
 Navigation visibility: add `show_in_nav: false` to an entry in the `navigation` list in `index.md` to hide its menu link while keeping the section in the page. Desktop and mobile use the same links.
 
 The CV navigation link opens the PDF configured in `_config.yml` directly, as does the hero button. Its `show_section: false` setting in `index.md` omits the standalone CV section. Replace `assets/cv.pdf` to update the downloadable CV.
+
+The header switches to the shared mobile menu at 56rem; keep this breakpoint synchronized in `styles.css` and `script.js`. A subtle divider appears after scrolling, and the CV link uses an outlined document button.
