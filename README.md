@@ -24,6 +24,7 @@ Keep the `---` lines at the top of each Markdown file. The fields between them c
 | Open-to-work status and opportunity types | [`content/_sections/availability.md`](content/_sections/availability.md) |
 | Biography, current study status, and location | [`content/_sections/about.md`](content/_sections/about.md) |
 | Statistics, programming, and tools | [`content/_skills/`](content/_skills/) |
+| Selected project contributions, methods, and links | [`content/_projects/`](content/_projects/) |
 | Publications | [`content/_publications/`](content/_publications/) |
 | Employment history | [`content/_experience/`](content/_experience/) |
 | Current degree and study track | [`content/_education/00-helsinki.md`](content/_education/00-helsinki.md) |
@@ -58,9 +59,9 @@ The current Helsinki degree has `current: true` and `status: "In progress"`. Thi
 
 ## Availability, skills, and page order
 
-The page follows this order: **Introduction → About → Education → Skills → Experience → Publications → CV**. The availability bar appears above the introduction, and contact buttons appear below it.
+The page follows this order: **Introduction → About → Education → Skills → Projects → Experience → Publications → CV**. A compact availability pill appears above the introduction, and contact buttons appear below it.
 
-Edit `content/_sections/availability.md` to change the **Open to work** label or the types of opportunities you are seeking. Set `active: false` to hide the entire status bar. Write the opportunity description as normal Markdown below the front matter.
+Edit `content/_sections/availability.md` to change the **Open to work** label or the types of opportunities you are seeking. Set `active: false` to hide it. Write the opportunity description as one paragraph below the front matter. The pill displays the label and description as a single line of text that wraps naturally on small screens; Markdown formatting is removed for this short status message.
 
 Skills are grouped into three Markdown files:
 
@@ -68,7 +69,15 @@ Skills are grouped into three Markdown files:
 - `content/_skills/02-programming.md`: languages and libraries.
 - `content/_skills/03-tools.md`: research and development tools.
 
-Edit the bullet lists to update each category. The `order` field controls the order of the cards. The `icon` field selects a small interface icon (`chart`, `code`, or `tools`).
+Edit the bullet lists to update each category. Start a list item with a **bold skill name**, then write a short description on the next indented line. The `order` field controls the order of the cards. The `icon` field selects a small interface icon (`chart`, `code`, or `tools`). Proficiency labels follow the uploaded CV; Bayesian statistics and experimental design are identified as coursework. Update the descriptions when your experience changes.
+
+## Add or edit a project
+
+Projects live in `content/_projects/`, with one Markdown file per project. The current entries summarise three THL projects from the uploaded CV and describe your contributions. Each has a title, organisation, period, and a short list of methods. Add an optional `link` and `link_label` for a related paper, project page, or public code repository. An entry without a link displays normally.
+
+Write the project context and your contribution in the Markdown body. Use `order` to arrange entries. Add future coursework or thesis projects here when you have concrete work to describe. The section is designed for selected examples, so three or four focused entries are enough.
+
+## Navigation
 
 Both navigation menus use the same `navigation` list in `index.md`, including **Experience**. The `anchor` values must match the section IDs in `_layouts/home.html`. The CV navigation item leads to the compact CV download section. Section order is defined in that layout.
 

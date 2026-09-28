@@ -27,6 +27,8 @@ collections:
     output: false
   skills:
     output: false
+  projects:
+    output: false
   publications:
     output: false
   experience:
