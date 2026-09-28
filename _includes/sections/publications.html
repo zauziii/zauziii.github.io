@@ -6,7 +6,7 @@
     <article class="publication">
       <div class="publication-meta"><span class="pub-year">{{ item.year }}</span><span class="pub-type">{{ item.topic | escape }}</span></div>
       <div class="publication-content">
-        <h3><a href="{{ item.link | escape }}" target="_blank" rel="noopener noreferrer">{{ item.title | escape }}<span class="sr-only"> (opens in a new tab)</span></a></h3>
+        <h3>{{ item.title | escape }}</h3>
         <div class="authors markdown">{{ item.authors | markdownify }}</div>
         <p class="journal"><em>{{ item.journal | escape }}</em> · {{ item.year }}</p>
         <div class="publication-actions"><span class="publication-status">{{ item.status | escape }}</span><a href="{{ item.link | escape }}" target="_blank" rel="noopener noreferrer">View paper ↗<span class="sr-only"> (opens in a new tab)</span></a>{% if item.language_note %}<span class="publication-language">{{ item.language_note | escape }}</span>{% endif %}</div>
