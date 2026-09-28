@@ -415,3 +415,24 @@ h2 { color: var(--ink); font-family: var(--sans); font-size: clamp(1.2rem, 2vw, 
   .publication { grid-template-columns: minmax(0, 1fr); }
   .publication .pub-type { margin-top: 0; }
 }
+
+/* Align corresponding text baselines, including when a title wraps. */
+@media (min-width: 48.001rem) {
+  .project-entry, .publication { align-items: first baseline; row-gap: 0; }
+  .project-meta, .project-content,
+  .publication-meta, .publication-content { display: contents; }
+
+  .project-organization { grid-column: 1; grid-row: 1; }
+  .project-content h3 { grid-column: 2; grid-row: 1; }
+  .project-meta .date { grid-column: 1; grid-row: 2; margin-top: .85rem; padding-top: 0; }
+  .project-description { grid-column: 2; grid-row: 2; }
+  .project-methods { grid-column: 2; grid-row: 3; }
+  .project-link { grid-column: 2; grid-row: 4; justify-self: start; }
+
+  .publication .pub-year { grid-column: 1; grid-row: 1; padding: 0; }
+  .publication h3 { grid-column: 2; grid-row: 1; }
+  .publication .pub-type { grid-column: 1; grid-row: 2; margin-top: .6rem; }
+  .publication .authors { grid-column: 2; grid-row: 2; }
+  .publication .journal { grid-column: 2; grid-row: 3; }
+  .publication-actions { grid-column: 2; grid-row: 4; }
+}
