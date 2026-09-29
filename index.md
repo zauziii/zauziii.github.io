@@ -13,6 +13,9 @@ projects_intro: "Selected contributions from my research at THL."
 publications_heading: "Selected publications"
 publications_intro: "Collaborative work in population health."
 experience_heading: "Professional experience"
+# This list orders the page sections and both navigation menus.
+# show_in_nav: false hides a menu link while keeping its section.
+# show_section: false hides a section; CV remains a direct PDF link.
 navigation:
   - label: "About"
     anchor: "profile"

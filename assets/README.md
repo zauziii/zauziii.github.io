@@ -1,10 +1,31 @@
-# Personal photograph and CV
+# Personal assets
 
-Upload your own files here:
+The website uses these existing files:
 
-- `portrait.jpg`: your photograph. It will be displayed in a circular frame.
-- `cv.pdf`: your own CV. All CV links will activate after GitHub Pages rebuilds.
+| File | Use |
+| --- | --- |
+| `portrait.jpg` | Personal photograph in the circular hero frame |
+| `cv.pdf` | User-uploaded CV opened by both the hero and navigation buttons |
+| `favicon.svg` | Blue tile with geometric ZZ initials |
 
-The website serves your uploaded files without generating or rewriting them. If a file is missing, the site shows your initials or a CV request by email.
+## Replace the photograph or CV
 
-For a PNG or WebP photograph, upload it here and update `portrait` in `_config.yml`. Adjust `portrait_position` to change the crop without altering the original image.
+Upload the replacement with the same filename and commit it. GitHub Pages will publish it in the next build. The site does not generate or rewrite the photograph or PDF.
+
+To change a filename or image format, update the matching path in the repository's `_config.yml`:
+
+```yaml
+portrait: "/assets/portrait.jpg"
+portrait_position: "50% 35%"
+cv: "/assets/cv.pdf"
+```
+
+`portrait_position` controls the crop inside the circular frame without modifying the original image. A missing photograph shows the configured initials.
+
+The current CV buttons open the configured PDF directly. Keep that file available: there is no automatic email-request fallback for these buttons and no visible standalone CV section.
+
+## Favicon
+
+Edit `favicon.svg` to change the icon. If a browser continues to display an old version, change the icon URL's version suffix in `_layouts/home.html` when publishing the replacement.
+
+See the [main README](../README.md) and [editing guide](../docs/EDITING.md) for the rest of the site. This file is excluded from the generated website.

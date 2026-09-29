@@ -1,4 +1,4 @@
-# Public profile settings. All page text is written in Markdown.
+# Public profile settings. Editable content lives in index.md and content/.
 title: "Zhi Zhou — Life Science Informatics Student"
 name: "Zhi Zhou"
 initials: "ZZ"
@@ -9,8 +9,8 @@ url: "https://zauziii.github.io"
 baseurl: ""
 lang: en
 
-# Upload files with these names to activate the photograph and CV automatically.
-# If a file is missing, the site keeps the initials or CV-on-request fallback.
+# The photograph falls back to initials if its file is missing.
+# Both visible CV links open this PDF path directly; keep the file available.
 portrait: "/assets/portrait.jpg"
 portrait_position: "50% 35%"
 cv: "/assets/cv.pdf"

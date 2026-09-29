@@ -7,6 +7,6 @@ topic: "Work ability"
 status: "Published"
 authors: "Lahti J, Reinikainen J, Kontto J, **Zhou Z**, et al."
 link: "https://doi.org/10.1177/14034948241228155"
+# Reference only; the homepage displays the fields above.
+citation_note: "Journal issue 2025 · First published online in 2024."
 ---
-
-Journal issue 2025 · First published online in 2024.
